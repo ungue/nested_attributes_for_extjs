@@ -1,19 +1,38 @@
 = nested_attributes_for_extjs
 
-Description goes here.
+Allow extjs to use NestedAttributes in ActiveRecord models.
 
-== Contributing to nested_attributes_for_extjs
- 
-* Check out the latest master to make sure the feature hasn't been implemented or the bug hasn't been fixed yet
-* Check out the issue tracker to make sure someone already hasn't requested it and/or contributed it
-* Fork the project
-* Start a feature/bugfix branch
-* Commit and push until you are happy with your contribution
-* Make sure to add tests for it. This is important so I don't break it in a future version unintentionally.
-* Please try not to mess with the Rakefile, version, or history. If you want to have your own version, or is otherwise necessary, that is fine, but please isolate to its own commit so I can cherry-pick around it.
+This behaviour has been extracted from NestedAttributes module.
 
-== Copyright
+As an example:
 
-Copyright (c) 2011 Ungue. See LICENSE.txt for
-further details.
+  class Book < ActiveRecord::Base
+    has_many :pages
+    accepts_nested_attributes_extjs_for :pages
+  end
 
+  book.pages_attributes = attributes
+  
+  # Where attributes can be
+  { 
+    "ext-record-1" => {
+      "number" => "1",
+      ...
+    }, 
+    "ext-record-2" => {
+      "number" => "2",
+      ...
+    },
+    3 => {
+      "number" => "30",
+    }
+  }
+
+It means that we are creating 2 new pages for the book ("1" and "2") and updating the page whose id is 3 to have the number "30". All the other pages will be removed from the book (This is a very important thing to have in mind).
+
+We can se that keys like "ext-record-..." appears in the hash when a new element is going to be created. That is so because Extjs doesn't allow arrays in the parameters (well, we could encode the array in a JSON object, but it isn't the purpose of this plugin). 
+
+== TODO
+
+* Clean the code to remove some methods posibly repeated from nested_attributes
+* Tests
