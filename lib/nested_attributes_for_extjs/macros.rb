@@ -1,6 +1,8 @@
 module NestedAttributesForExtjs
   module Macros
 
+    extend ActiveSupport::Concern
+
     included do
       class_attribute :nested_attributes_extjs_options, :instance_writer => false
       self.nested_attributes_extjs_options = {}
