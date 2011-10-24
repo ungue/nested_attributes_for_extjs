@@ -17,9 +17,9 @@ Jeweler::Tasks.new do |gem|
   gem.name = "nested_attributes_for_extjs"
   gem.homepage = "http://github.com/ungue/nested_attributes_for_extjs"
   gem.license = "MIT"
-  gem.summary = %Q{TODO: one-line summary of your gem}
-  gem.description = %Q{TODO: longer description of your gem}
-  gem.email = "jrodriguez@evolve.st"
+  gem.summary = %Q{Adds collection_attribute= to update/insert/destroy nested elements coming from ExtJS.}
+  gem.description = %Q{}
+  gem.email = "ungue79@yahoo.es"
   gem.authors = ["Ungue"]
   # dependencies defined in Gemfile
 end
